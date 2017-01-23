@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>datepicker</title>
+
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/latoja.datepicker.css">
+    <script src="./js/jquery-3.1.1.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/jquery.ui.datepicker-zh-cn.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .datePicker {
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 记得这个 ll-skin-latoja 一定要带上 如果你要效果是一样 -->
+    <div class="datePicker ll-skin-latoja"></div>
+
+    <script type="text/javascript">
+
+        /* 网址： http://api.jqueryui.com/datepicker/  */
+
+        $(function() {
+            $( ".datePicker" ).datepicker({
+                onSelect: function(dateText, inst) {
+                    let $d = sessionStorage.getItem('dateText');
+                    if(!$d){
+                        queryDate.apply(this, [dateText, inst]);
+                    }else if($d!=dateText){
+                        queryDate.apply(this, [dateText, inst]);
+                    }
+                    sessionStorage.setItem('dateText', dateText);
+                }
+            });
+
+            /* 这里去查询用户点击的日期 */
+            function queryDate(d, i){
+                console.log(d);
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
